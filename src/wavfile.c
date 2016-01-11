@@ -175,7 +175,7 @@ int wavfile_read_s32(wavfile * f, int32_t *samples)
     samples_to_read = f->samples_left < 512 ? f->samples_left : 512;
     bytes_to_read = samples_to_read * f->channels * (f->bits_per_sample / 8);
     f->samples_left -= samples_to_read;
-    if (fread(buffer, 1, bytes_to_read, f->file) != bytes_to_read) {
+    if (fread(buffer, 1, bytes_to_read, f->file) != sizeof(bytes_to_read)) {
 	f->samples_left = 0;
     }
     

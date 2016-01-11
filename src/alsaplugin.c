@@ -78,7 +78,6 @@ static snd_pcm_sframes_t dcaplug_transfer(snd_pcm_extplug_t *ext,
                 size = remaining;
 
         snd_pcm_uframes_t i;
-        int channel;
         int srcbufidx = ext->channels * dcaplug->bufpos;
         int dstbufidx = 2 * dcaplug->bufpos;
         for (i = 0; i < size; i++) {
@@ -231,8 +230,8 @@ SND_PCM_PLUGIN_DEFINE_FUNC(dca)
                 return err;
         }
 
-        static const int channels[2] = {4, 6};
-        static const int formats[2] = {SND_PCM_FORMAT_S32, SND_PCM_FORMAT_S16};
+        static const unsigned int channels[2] = {4, 6};
+        static const unsigned int formats[2] = {SND_PCM_FORMAT_S32, SND_PCM_FORMAT_S16};
 
         snd_pcm_extplug_set_param_list(&dcaplug->ext, SND_PCM_EXTPLUG_HW_CHANNELS,
                 2, channels);

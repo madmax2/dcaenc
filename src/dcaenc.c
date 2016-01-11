@@ -393,6 +393,7 @@ static void walk_band_high(dcaenc_context c, int band, int channel,
 	}
 }
 
+/*
 static void walk_whole_spectrum(dcaenc_context c, int channel,
                                 walk_band_t walk, int32_t * arg)
 {
@@ -401,10 +402,15 @@ static void walk_whole_spectrum(dcaenc_context c, int channel,
 		walk_band_low(c, band, channel, walk, arg);
 	walk_band_high(c, 31, channel, walk, arg);
 }
+*/
 
+/*
 static void update_band_masking(dcaenc_context c, int band1, int band2,
 							int f, int32_t spectrum1, int32_t spectrum2,
 							int channel, int32_t * arg)
+*/
+static void update_band_masking(dcaenc_context c, int band1, int f,
+								int32_t spectrum1)
 {
 	int32_t value = c->eff_masking_curve_cb[f] - spectrum1;
 	if (value < c->band_masking_cb[band1])
@@ -911,6 +917,7 @@ static void put_subframe(dcaenc_context c)
 	bitstream_put(c, 0xffff, 16);
 }
 
+/*
 static void dump_bits(dcaenc_context c)
 {
 	int band, ch;
@@ -926,7 +933,9 @@ static void dump_bits(dcaenc_context c)
 	}
 	printf("\n");
 }
+*/
 
+/*
 static void dump_masking_curve(dcaenc_context c)
 {
 	int f;
@@ -937,6 +946,7 @@ static void dump_masking_curve(dcaenc_context c)
 		printf(" %d", c->eff_masking_curve_cb[f]);
 	printf("\n");
 }
+*/
 
 static int dcaenc_convert_frame(dcaenc_context c, const int32_t *input, uint8_t *output, int normal)
 {

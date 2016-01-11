@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 	FILE * outfile;
 	int bitrate;
 	int wrote;
-	int samples_total;
+	//int samples_total;
 	
 	static const int channel_map[6] = {DCAENC_CHANNELS_MONO, DCAENC_CHANNELS_STEREO, 0,
 	DCAENC_CHANNELS_2FRONT_2REAR, DCAENC_CHANNELS_3FRONT_2REAR, DCAENC_CHANNELS_3FRONT_2REAR };
@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
 	}
 	bitrate = atoi(argv[3]);
 	
-	samples_total = f->samples_left;
+	//samples_total = f->samples_left;
 	c = dcaenc_create(f->sample_rate, channel_map[f->channels - 1], bitrate, f->channels == 6 ? DCAENC_FLAG_LFE : 0);
 	
 	if (!c) {
