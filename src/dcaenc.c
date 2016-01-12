@@ -404,13 +404,9 @@ static void walk_whole_spectrum(dcaenc_context c, int channel,
 }
 */
 
-/*
 static void update_band_masking(dcaenc_context c, int band1, int band2,
 							int f, int32_t spectrum1, int32_t spectrum2,
 							int channel, int32_t * arg)
-*/
-static void update_band_masking(dcaenc_context c, int band1, int f,
-								int32_t spectrum1)
 {
 	int32_t value = c->eff_masking_curve_cb[f] - spectrum1;
 	if (value < c->band_masking_cb[band1])
@@ -532,7 +528,7 @@ static void dcaenc_assign_bits(dcaenc_context c)
 	low = high = c->worst_quantization_noise;
 	if (c->consumed_bits > c->frame_bits) {
 		while (c->consumed_bits > c->frame_bits) {
-			assert(("Too low bitrate should have been rejected in dcaenc_create", used_abits != USED_1ABITS));
+			assert(used_abits != USED_1ABITS && "Too low bitrate should have been rejected in dcaenc_create");
 			low = high;
 			high += snr_fudge;
 			used_abits = init_quantization_noise(c, high);
